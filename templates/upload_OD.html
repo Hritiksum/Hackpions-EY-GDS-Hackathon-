@@ -1,0 +1,226 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+  <link rel="icon" href="{%static '46.png' %}" type="image/png">
+  <title>{% block title %}Object Detection{% endblock %}</title>
+  
+
+</head>
+
+<body style="background-image: url(https://wallpapersite.com/images/pages/pic_h/17944.jpg);background-repeat: no-repeat;
+background-position: center;
+background-attachment: fixed;">
+<div class="spinner-border" role="status" style="background-color: transparent;position: fixed;left: 49.5%;top: 50%;z-index: 99999;display: flex;color:#33ccff;">
+
+</div>
+  <!--Navbar-->
+  <div class="card" id="card" style="
+    background-color: black;
+    height: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99;">
+  </div>
+  
+  
+  <nav class="navbar navbar-expand-lg navbar-dark primary-color" >
+
+    <!-- Navbar brand -->
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">OCR detection
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <!--hr><hr>
+              <li class="nav-item">
+                <a class="nav-link" href="/segmentation">Image Segmentation 
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <hr><hr>
+              <li class="nav-item">
+                <a class="nav-link" href="/classify">Image Classify  
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <hr><hr>
+              <li class="nav-item">
+                <a class="nav-link" href="/foldermodel">Use folder as Dataset 
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <hr><hr>
+              <li class="nav-item">
+                <a class="nav-link" href="/csvmodel">Use csv format of Dataset
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li-->
+            </ul>
+            <!-- Links -->
+    </div>
+    <!-- Collapsible content -->
+
+  </nav>
+  <!--/.Navbar-->
+<div class="container-fluid" style="margin-top: 1rem;margin-bottom: 5rem;">
+    <div class="row">
+        <div class="col-md-6" style="margin: 0 auto;">
+            <!-- Card -->
+            <div class="card" style="margin-bottom: 1rem;">
+
+                <!-- Card image -->
+                <div class="view overlay">
+                  <h2 class="card-title" style="text-align: center;margin: 0 auto;"> <B>   {{f5}}</B>
+                  </h2>
+                    
+                </div>
+
+                <!-- Card content -->
+                <div class="card-body">
+                    <li class="list-group-item" style="text-align: center;margin: 0 auto;" >
+                    
+                
+                    </br>
+                     
+
+
+                    <form  action="{%  url 'upload_OD'  %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="input-group">
+                        <!--div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="inputGroupFile01"
+                            aria-describedby="inputGroupFileAddon01" name="document" required>
+                          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div-->
+                        
+                          <!--form id="new_document_attachment" method="post"-->
+                              
+                              <input type="file" id="document_attachment_doc" aria-describedby="inputGroupFileAddon01" name="document" required />
+                              <button type="submit" class="btn btn-info btn-rounded" style="display: block;margin: 0 auto;">Submit</button>
+                              <h4 class="card-title" style="text-align: center;margin: 0 auto;">    {{result}}
+                              </h4>
+                              <!--div class="actions"><input type="submit" name="commit" value="Submit" /></div-->
+                          </form>
+                        
+                      </div>
+                      <script>
+                          const form = document.getElementById("new_document_attachment");
+                          const fileInput = document.getElementById("document_attachment_doc");
+                  
+                          fileInput.addEventListener('change', () => {
+                              form.submit();
+                          });
+                  
+                          window.addEventListener('paste', e => {
+                              fileInput.files = e.clipboardData.files;
+                          });
+                      </script>
+                      </div>
+
+
+
+
+
+                    </br></br>
+                    <div class="col-md-12 col-lg-12 mb-4">
+                        
+          
+                       
+                      </div>
+                        
+            
+                    </form>
+                </li>
+                    
+                </div>
+
+            </div>
+            <!-- Card -->
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 1rem;">
+        
+        
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <!-- Footer -->
+    <footer class="page-footer font-small blue fixed-bottom">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3"
+        style="background: black;color: white;font-weight:bold;font-size:0.5rem;">
+        <span>© 2020 Copyright: <a href="https://github.com/Hritiksum">Hritik Suman&nbsp;&nbsp;
+          <a class="ins-ic" href="https://github.com/Hritiksum"><i class="fab fa-github  fa-3x"></i></a></span>
+          
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <!-- JQuery -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+          //Preloader
+          preloaderFadeOutTime = 200;
+          function hidePreloader() {
+              var preloader1 = $('.spinner-border');
+              var preloader2 = $('#card');
+
+              preloader1.fadeOut(preloaderFadeOutTime);
+              preloader2.fadeOut(preloaderFadeOutTime);
+
+
+          }
+          hidePreloader();
+      });
+  </script>
+</body>
+
+</html>
